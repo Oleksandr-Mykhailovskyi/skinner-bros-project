@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bol_id": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
+    },
+    "shipper_name": {
+      "type": "string"
+    },
+    "shipper_address": {
+      "type": "string"
+    },
+    "consignee_name": {
+      "type": "string"
+    },
+    "consignee_address": {
+      "type": "string"
+    },
+    "pickup_date": {
+      "type": "datetime"
+    },
+    "delivery_date": {
+      "type": "datetime"
+    },
+    "cargo_description": {
+      "type": "text"
+    },
+    "quality": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "string"
+    },
+    "special_instructions": {
+      "type": "text"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "creation_place": {
+      "type": "string"
+    },
+    "bol_number": {
+      "type": "string"
+    },
+    "order_status": {
+      "type": "enumeration",
+      "enum": [
+        "ready",
+        "reject",
+        "pending",
+        "completed",
+        "new"
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.sidenav-container {
+  height: 100vh;
+  position: relative;
+}
+
+.sidenav {
+  width: 200px;
+  transition: width 0.3s;
+}
+
+.sidenav:not(.mat-drawer-opened) {
+  width: 0 !important;
+  overflow: hidden;
+}
+
+.toggle-button {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  z-index: 1001;
+}
+
+.content {
+  padding: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.active-link {
+  font-weight: bold;
+}

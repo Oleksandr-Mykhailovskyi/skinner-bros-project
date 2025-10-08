@@ -1,0 +1,125 @@
+<div class="container mt-4">
+  <h4 mat-dialog-title>{{ isEditMode ? 'Edit BOL Record' : 'Add New BOL Record' }}</h4>
+
+  <form [formGroup]="bolForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+    <!-- Row 1 -->
+    <div class="col-12 col-md-3">
+      <label for="bol_id" class="form-label">BOL ID</label>
+      <input type="text" id="bol_id" class="form-control" formControlName="bol_id" placeholder="Enter BOL ID">
+      <div *ngIf="bolForm.get('bol_id')?.touched && bolForm.get('bol_id')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="job_id" class="form-label">Job ID</label>
+      <input type="text" id="job_id" class="form-control" formControlName="job_id" placeholder="Enter Job ID">
+      <div *ngIf="bolForm.get('job_id')?.touched && bolForm.get('job_id')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="bol_number" class="form-label">BOL Number</label>
+      <input type="text" id="bol_number" class="form-control" formControlName="bol_number" placeholder="Enter BOL Number">
+      <div *ngIf="bolForm.get('bol_number')?.touched && bolForm.get('bol_number')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="shipper_name" class="form-label">Shipper Name</label>
+      <input type="text" id="shipper_name" class="form-control" formControlName="shipper_name" placeholder="Enter Shipper Name">
+      <div *ngIf="bolForm.get('shipper_name')?.touched && bolForm.get('shipper_name')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="col-12 col-md-3">
+      <label for="shipper_address" class="form-label">Shipper Address</label>
+      <input type="text" id="shipper_address" class="form-control" formControlName="shipper_address" placeholder="Enter Shipper Address">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="consignee_name" class="form-label">Consignee Name</label>
+      <input type="text" id="consignee_name" class="form-control" formControlName="consignee_name" placeholder="Enter Consignee Name">
+      <div *ngIf="bolForm.get('consignee_name')?.touched && bolForm.get('consignee_name')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="consignee_address" class="form-label">Consignee Address</label>
+      <input type="text" id="consignee_address" class="form-control" formControlName="consignee_address" placeholder="Enter Consignee Address">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="pickup_date" class="form-label">Pickup Date</label>
+      <input type="datetime-local" id="pickup_date" class="form-control" formControlName="pickup_date">
+      <div *ngIf="bolForm.get('pickup_date')?.touched && bolForm.get('pickup_date')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="col-12 col-md-3">
+      <label for="delivery_date" class="form-label">Delivery Date</label>
+      <input type="datetime-local" id="delivery_date" class="form-control" formControlName="delivery_date">
+      <div *ngIf="bolForm.get('delivery_date')?.touched && bolForm.get('delivery_date')?.invalid" class="text-danger small">
+        Required
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="cargo_description" class="form-label">Cargo Description</label>
+      <input type="text" id="cargo_description" class="form-control" formControlName="cargo_description" placeholder="Describe cargo">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="quality" class="form-label">Quality</label>
+      <input type="text" id="quality" class="form-control" formControlName="quality" placeholder="Enter Quality">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="weight" class="form-label">Weight</label>
+      <input type="text" id="weight" class="form-control" formControlName="weight" placeholder="Enter Weight">
+    </div>
+
+    <!-- Row 4 -->
+    <div class="col-12 col-md-3">
+      <label for="special_instructions" class="form-label">Special Instructions</label>
+      <input type="text" id="special_instructions" class="form-control" formControlName="special_instructions" placeholder="Enter Instructions">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="creator" class="form-label">Creator</label>
+      <input type="text" id="creator" class="form-control" formControlName="creator" placeholder="Enter Creator Name">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="creation_place" class="form-label">Creation Place</label>
+      <input type="text" id="creation_place" class="form-control" formControlName="creation_place" placeholder="Enter Creation Place">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="creation_place" class="form-label">Creation Place</label>
+      <input type="text" id="creation_place" class="form-control" formControlName="creation_place" placeholder="Enter Creation Place">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label for="order_status" class="form-label">Order Status</label>
+      <select id="order_status" class="form-select" formControlName="order_status">
+        <option *ngFor="let status of orderStatuses" [value]="status.value">
+          {{ status.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex justify-content-end mt-3">
+      <button type="button" class="btn btn-outline-secondary me-2" (click)="closeDialog()">Cancel</button>
+      <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Create' }}</button>
+    </div>
+  </form>
+</div>
