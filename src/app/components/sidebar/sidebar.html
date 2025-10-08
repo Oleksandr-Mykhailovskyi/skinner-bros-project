@@ -1,0 +1,26 @@
+<button mat-icon-button class="toggle-button" *ngIf="!opened" (click)="toggleSidebar()">
+  <mat-icon>chevron_right</mat-icon>
+</button>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="opened" class="sidenav">
+    <mat-toolbar color="primary">
+      Menu
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item (click)="navigate('')" routerLinkActive="active-link">Home</a>
+      <a mat-list-item (click)="navigate('template')" routerLinkActive="active-link">Template</a>
+      <a mat-list-item (click)="logout()">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

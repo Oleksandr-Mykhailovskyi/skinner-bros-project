@@ -1,45 +1,63 @@
-<button>Add new record</button>
-<div class="mat-elevation-z8" style="margin: 20px;">
-  <table mat-table [dataSource]="dataSource">
+<div class="mat-elevation-z8" style="margin: 20px; padding: 10px;">
+  <div style="margin-bottom: 10px;">
+    <button mat-raised-button color="primary" (click)="addRecord()">Add new record</button>
+    <button mat-raised-button color="primary" (click)="exportToExcel()">Export to Excel</button>
+  </div>
 
-    <!-- Определения колонок остаются без изменений -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Show / Hide Columns</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="column-selector">
+      <mat-checkbox
+        *ngFor="let column of allColumns"
+        [checked]="displayedColumns.includes(column)"
+        (change)="toggleColumn(column, $event)"
+      >
+        {{ column.replaceAll('_', ' ') }}
+      </mat-checkbox>
+    </div>
+  </mat-expansion-panel>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+    <ng-container *ngFor="let column of allColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef>{{ column.replaceAll('_', ' ') | titlecase }}</th>
+      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-
+    <!-- Actions -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Действия </th>
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button color="primary" (click)="handleButtonClick(element)">
-          Edit
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
+
+        <!-- Dropdown меню -->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editRecord(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="deleteRecord(element)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
       </td>
     </ng-container>
+
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <!-- ======== КОМПОНЕНТ ПАГИНАТОРА ======== -->
   <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
-    aria-label="Select page of periodic elements">
+    aria-label="Select page of BOL records">
   </mat-paginator>
 </div>

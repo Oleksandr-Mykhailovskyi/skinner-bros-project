@@ -1,18 +1,20 @@
-// src/app/components/scheduler/scheduler.ts
+// components/app/components/scheduler/scheduler.ts
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Обязательно для *ngIf, *ngFor, @switch и т.д.
 import { CalendarEvent, CalendarModule, CalendarView } from 'angular-calendar'; // Импорты angular-calendar
 import { startOfDay, endOfDay, addHours } from 'date-fns'; // Функции для работы с датами из date-fns
-import { Subject } from 'rxjs'; // Обязательно для свойства [refresh]
+import { Subject } from 'rxjs';
+import {TemplateModel} from '../../forms/template-model/template-model'; // Обязательно для свойства [refresh]
 
 @Component({
   selector: 'app-scheduler', // Селектор, который вы используете в app.html
   standalone: true,
   imports: [
     CommonModule,   // Нужен для структурных директив в шаблоне
-    CalendarModule  // Если CalendarModule.forRoot(...) уже в app.config.ts, то здесь достаточно просто CalendarModule
-                    // Если нет, то здесь нужно было бы CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule
+    // Если CalendarModule.forRoot(...) уже в app.config.ts, то здесь достаточно просто CalendarModule
+    // Если нет, то здесь нужно было бы CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   templateUrl: './scheduler.html', // Путь к вашему HTML-шаблону компонента Scheduler
   styleUrl: './scheduler.scss'     // Путь к вашим стилям компонента Scheduler
