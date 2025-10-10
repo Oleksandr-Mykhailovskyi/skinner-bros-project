@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:1337/api';
+  private apiUrl = 'https://strapi-cloud-template-blog-ab0ea8f6c9.onrender.com';
   private tokenKey = 'jwt';
 
   constructor(private http: HttpClient) {}

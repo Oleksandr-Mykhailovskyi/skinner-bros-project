@@ -7,7 +7,7 @@ import {BillModel} from '../interfaces/bill.model';
   providedIn: 'root'
 })
 export class StrapiService {
-  private apiUrl = 'http://localhost:1337/api';
+  private apiUrl = 'https://strapi-cloud-template-blog-ab0ea8f6c9.onrender.com';
 
   constructor(private http: HttpClient) {}
 
