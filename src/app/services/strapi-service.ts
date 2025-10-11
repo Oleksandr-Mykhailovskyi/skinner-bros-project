@@ -20,7 +20,7 @@ export class StrapiService {
   }
 
   postTask(bill: BillModel): Observable<any> {
-    const { id, ...data } = bill;
+    const { id, documentId, ...data } = bill;
     return this.http.post(`${this.apiUrl}/tasks`, { data: data });
   }
 
