@@ -1,7 +1,8 @@
 import path from 'path';
 
 export default ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_URL')? 'postgres' : env('DATABASE_CLIENT', 'sqlite');
+  const isPostgresDefault = client === 'postgres';
 
   const connections = {
     mysql: {
@@ -52,7 +53,7 @@ export default ({ env }) => {
 
   return {
     connection: {
-      client,
+      client: client,
       ...connections[client],
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
     },
