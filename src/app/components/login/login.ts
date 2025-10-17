@@ -9,11 +9,11 @@ import {AuthService} from '../../services/auth.service';
     FormsModule
   ],
   template: `
-    <h2>Вход</h2>
+    <h2>Login</h2>
     <form (ngSubmit)="login()">
-      <input type="text" [(ngModel)]="identifier" name="identifier" placeholder="Email или Username" required/>
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Пароль" required/>
-      <button type="submit">Войти</button>
+      <input type="text" [(ngModel)]="identifier" name="identifier" placeholder="Email or Username" required/>
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required/>
+      <button type="submit">Login</button>
     </form>
   `
 })
@@ -26,7 +26,7 @@ export class LoginComponent {
   login() {
     this.auth.login(this.identifier, this.password).subscribe({
       next: () => this.router.navigate(['/template']),
-      error: (err) => alert('Ошибка: ' + err.error?.error?.message)
+      error: (err) => alert('Error: ' + err.error?.error?.message)
     });
   }
 }
